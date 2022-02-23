@@ -25,15 +25,12 @@ import Content from "../../layouts/content";
 import TeamStore from "../../stores/teamStore";
 import { StyledTheadTR, StyledTD, StyledIcon, StyledHeader } from "./style";
 import { User, Team } from "../../types/Team";
+
 type TInput = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 
 const Managers: React.FC = () => {
     const teamStore = useContext(TeamStore);
     const { myteams, teamName } = teamStore;
-
-    const [team, setTeam] = useState("");
-    const [managerName, setManagerName] = useState("");
-    const [mail, setMail] = useState("");
 
     console.log("myTeam", toJS(teamName));
     const teams: Team[] = [];
@@ -46,8 +43,11 @@ const Managers: React.FC = () => {
     const clickHandler = () => {
         setShow((prev) => !prev);
     };
+    const [groupName, setGroupName] = useState("");
+    const [managerName, setManagerName] = useState("");
+    const [mail, setMail] = useState("");
     const teamHandler = (e: React.ChangeEvent<TInput>) => {
-        setTeam(e.target.value);
+        setGroupName(e.target.value);
     };
     const managerHandler = (e: React.ChangeEvent<TInput>) => {
         setManagerName(e.target.value);
@@ -58,7 +58,7 @@ const Managers: React.FC = () => {
     const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = {
-            teamName,
+            groupName,
             managerName,
             mail,
         };
@@ -98,7 +98,7 @@ const Managers: React.FC = () => {
                                                     <Col col>
                                                         <Select
                                                             id=""
-                                                            name="teamName"
+                                                            name="groupName"
                                                             mb="10px"
                                                             onChange={
                                                                 teamHandler
@@ -134,7 +134,9 @@ const Managers: React.FC = () => {
                                                             mb="10px"
                                                             type="text"
                                                             onChange={(e) =>
-                                                                managerHandler(e)
+                                                                managerHandler(
+                                                                    e
+                                                                )
                                                             }
                                                         />
                                                         <Input
