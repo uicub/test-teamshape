@@ -1,0 +1,4 @@
+.container {
+  max-height: 784px;
+  overflow-y: overlay;
+}

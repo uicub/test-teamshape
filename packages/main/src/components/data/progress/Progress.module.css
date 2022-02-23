@@ -1,0 +1,85 @@
+.container {
+  position: relative;
+  padding: 36px;
+}
+.container :global .ant-progress-circle .ant-progress-inner {
+  width: 170px !important;
+  height: 170px !important;
+  font-size: 32px !important;
+  color: black;
+  font-weight: 600;
+}
+.container .percentageContainerVer {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  left: 45%;
+}
+.container .percentageContainerVer .percentage {
+  font-size: 12px;
+  padding: 2px 0px;
+}
+.container .percentageContainerHor {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 46%;
+}
+.container .percentageContainerHor .percentage {
+  font-size: 12px;
+  padding: 0px 2px;
+}
+.container .top {
+  top: 2px;
+}
+.container .bottom {
+  bottom: 2px;
+}
+.container .left {
+  left: 6px;
+}
+.container .right {
+  right: 6px;
+}
+.container .smallSeparator {
+  position: absolute;
+  width: 1px;
+  height: 6px;
+  background: #b3b7d2;
+}
+.container .rightTop {
+  transform: rotate(45deg);
+  top: 53px;
+  right: 53px;
+}
+.container .rightBottom {
+  right: 53px;
+  bottom: 53px;
+  transform: rotate(-45deg);
+}
+.container .leftBottom {
+  left: 53px;
+  bottom: 53px;
+  transform: rotate(45deg);
+}
+.container .leftTop {
+  left: 53px;
+  top: 53px;
+  transform: rotate(-45deg);
+}
+.container .horizontalLine {
+  width: 12px;
+  height: 1px;
+  background: #b3b7d2;
+}
+.container .verticalLine {
+  width: 1px;
+  height: 12px;
+  background: #b3b7d2;
+}
+.container .extraText {
+  color: #6a6a85;
+  font-weight: 500;
+  font-size: 12px;
+}

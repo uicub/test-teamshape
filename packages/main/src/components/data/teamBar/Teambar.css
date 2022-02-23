@@ -1,0 +1,50 @@
+.container {
+  width: 100%;
+  border: 1px solid #d5d8ee;
+  border-radius: 8px;
+  padding: 35px 25px 20px 25px;
+}
+.container .barContainer {
+  width: 100%;
+  position: relative;
+}
+.container .barContainer .ranges {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  position: relative;
+}
+.container .barContainer .ranges .label {
+  font-size: 12px;
+  color: #6a6a85;
+}
+.container .barContainer .rangeBarAbsolute {
+  position: absolute;
+}
+.container .barContainer .bars {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.container .barContainer .bars .rangeBar {
+  height: 17px;
+  width: 2px;
+  background: #d5d8ee;
+  margin-bottom: 10px;
+}
+.container .bar {
+  height: 1px;
+  width: 100%;
+  background: #d5d8ee;
+  position: absolute;
+  top: 9px;
+}
+.container .member {
+  position: absolute;
+  top: -17px;
+}
+.container .labelsContainer {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 16px;
+}

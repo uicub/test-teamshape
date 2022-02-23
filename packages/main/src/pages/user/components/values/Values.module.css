@@ -1,0 +1,21 @@
+.container .listContainer {
+  padding: 30px 0px;
+}
+.container .labelContainer {
+  display: flex;
+  border-bottom: 1px solid #EAEBF5;
+}
+.container .label {
+  color: #0D0736;
+  font-size: 20px;
+  flex: 1;
+  font-weight: 500;
+  padding: 15px 30px;
+}
+.container .lists {
+  display: flex;
+}
+.container .list {
+  flex: 1;
+  padding: 30px;
+}

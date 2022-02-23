@@ -1,0 +1,63 @@
+@import "../../../../styles/variables.less";
+.card {
+    box-shadow: 0px 8px 40px @components-shadow;
+    border: 1px solid @components-border;
+    border-radius: 8px;
+    display: flex;
+    background: @components-background;
+    max-height: 342px;
+    .generalDetailsContainer {
+        flex: 1;
+        padding: 14px;
+        box-shadow: 5px 0px 12px @components-shadow;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        @media @smallDesktop {
+            padding: 0px;
+        }
+        .avatarContainer {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+            .name {
+                font-size: 24px;
+                color: @text-color-dark;
+                padding-top: 10px;
+            }
+        }
+        .details {
+            padding: 20px;
+            width: 100%;
+            .detail {
+                display: flex;
+                border-bottom: 2px solid @details-border;
+                justify-content: space-between;
+                padding: 10px;
+                @media @smallDesktop {
+                    padding: 10px 0px;
+                }
+                .value {
+                    color: @text-color-dark;
+                }
+            }
+            .detail:last-child {
+                border-bottom: unset;
+            }
+        }
+    }
+    .activityContainer {
+        flex: 1;
+        padding: 14px;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        .activityTitle {
+            font-size: 24px;
+            color: #0d0736;
+            padding-bottom: 32px;
+        }
+    }
+}

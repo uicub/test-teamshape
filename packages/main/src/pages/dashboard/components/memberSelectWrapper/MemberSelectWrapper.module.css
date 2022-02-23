@@ -1,0 +1,130 @@
+.container {
+  display: flex;
+  box-shadow: 0px 8px 40px #16195E1F;
+  border: 1px solid #D5D8EE;
+  justify-content: space-between;
+  border-radius: 8px;
+  background: white;
+  margin-top: 34px;
+}
+.container .header {
+  height: 75px;
+  padding: 24px 32px;
+  color: #0d0736;
+  font-size: 24px;
+  background: white;
+  border-radius: 0px 8px 0px 0px;
+}
+.container .memberHeader {
+  box-shadow: 0px 15px 40px #16195e1f;
+  border-radius: 8px 0px 0px 0px;
+  display: flex;
+  justify-content: space-between;
+}
+.container .memberHeader .button {
+  color: #2057FF;
+  border: 2px solid #2057FF;
+}
+.container .membersContainer {
+  background: white;
+  flex: 1;
+  border-radius: 8px 0px 0px 8px;
+}
+.container .membersContainer .content {
+  padding: 24px 32px;
+  overflow-y: scroll;
+  display: flex;
+}
+.container .membersContainer .content .col {
+  flex: 1;
+}
+.container .membersContainer .content .col1 {
+  padding-right: 32px;
+}
+.container .membersContainer .content .memberCard {
+  height: 125px;
+  background: white;
+  box-shadow: 0px 8px 40px #16195e1f;
+  border: 1px solid #d5d8ee;
+  border-radius: 8px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.container .membersContainer .content .memberCard .checkboxContainer {
+  position: absolute;
+  top: 11px;
+  right: 11px;
+}
+.container .membersContainer .content .memberCard .checkboxContainer .checked0 :global .ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #F1466E;
+  border-color: #F1466E;
+}
+.container .membersContainer .content .memberCard .checkboxContainer .checked1 :global .ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #2057FF;
+  border-color: #2057FF;
+}
+.container .membersContainer .content .memberCard .checkboxContainer .checked2 :global .ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #FF872B;
+  border-color: #FF872B;
+}
+.container .membersContainer .content .memberCard .checkboxContainer .checked3 :global .ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #35B201;
+  border-color: #35B201;
+}
+.container .membersContainer .content .memberCard .checkboxContainer .checked4 :global .ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #E7D342;
+  border-color: #E7D342;
+}
+.container .membersContainer .content .memberCard .checkboxContainer .checked5 :global .ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #970FD1;
+  border-color: #970FD1;
+}
+.container .membersContainer .content .memberCard .checkboxContainer .checked6 :global .ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #0E054D;
+  border-color: #0E054D;
+}
+.container .membersContainer .content .memberCard .detailsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.container .membersContainer .content .memberCard .detailsContainer .name {
+  font-size: 16px;
+  color: #0d0736;
+  font-weight: 500;
+}
+.container .membersContainer .content .checkedBorder0 {
+  border: 1px solid #F1466E;
+}
+.container .membersContainer .content .checkedBorder1 {
+  border: 1px solid #2057FF;
+}
+.container .membersContainer .content .checkedBorder2 {
+  border: 1px solid #FF872B;
+}
+.container .membersContainer .content .checkedBorder3 {
+  border: 1px solid #35B201;
+}
+.container .membersContainer .content .checkedBorder4 {
+  border: 1px solid #E7D342;
+}
+.container .membersContainer .content .checkedBorder5 {
+  border: 1px solid #970FD1;
+}
+.container .membersContainer .content .checkedBorder6 {
+  border: 1px solid #0E054D;
+}
+.container .element {
+  width: 57%;
+  background: white;
+  border-radius: 0px 8px 8px 0px;
+  border-left: 1px solid #eaebf5;
+}
+.container .element .content {
+  padding-bottom: 32px;
+  color: #0d0736;
+}

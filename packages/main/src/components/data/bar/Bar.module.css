@@ -1,0 +1,39 @@
+.container {
+  color: #37374D;
+}
+.container .topPercentageContainer {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 18px;
+}
+.container .labelsContainer {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+  padding-top: 12px;
+}
+.container .barContainerGY {
+  height: 16px;
+  border-radius: 20px;
+  background-color: #F3D61A;
+  box-shadow: 0px 0px 6px #16195E1F;
+}
+.container .percentageBarGY {
+  height: 16px;
+  border-radius: 20px;
+  background-color: #35B201;
+  box-shadow: 0px 0px 6px #16195E1F;
+}
+.container .barContainerPP {
+  height: 16px;
+  border-radius: 20px;
+  background-color: #F31A71;
+  box-shadow: 0px 0px 6px #16195E1F;
+}
+.container .percentageBarPP {
+  height: 16px;
+  border-radius: 20px;
+  background-color: #781AF3;
+  box-shadow: 0px 0px 6px #16195E1F;
+}

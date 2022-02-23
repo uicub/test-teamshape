@@ -1,0 +1,23 @@
+.container .row {
+  border-bottom: 1px solid #EAEBF5;
+  padding: 30px;
+}
+.container .row .labelContainer {
+  padding-bottom: 16px;
+}
+.container .row .labelContainer .label {
+  font-size: 20px;
+  color: #0D0736;
+  font-weight: 500;
+  display: flex;
+}
+.container .row .labelContainer .label .infoIcon {
+  padding-left: 4px;
+  color: #6A6A85;
+}
+.container .row .labelContainer .label .infoIcon:hover {
+  color: #2B5CFF;
+}
+.container .row:last-child {
+  border-bottom: unset;
+}

@@ -1,0 +1,15 @@
+.container .questionContainer {
+  padding-bottom: 32px;
+}
+.container .questionContainer .question {
+  font-size: 18px;
+  color: #0d0736;
+  padding-bottom: 20px;
+}
+.container .feedbackTitle {
+  border-bottom: 1px solid #d5d8ee;
+  padding: 13px 0px;
+  margin-bottom: 24px;
+  font-size: 24px;
+  color: #0d0736;
+}

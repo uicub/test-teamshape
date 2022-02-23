@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+      "baseUrl": "./packages",
+      "paths": {
+        "@doar/*": ["./*/src/"],
+        "@assets/*": ["./main/src/assets/*"],
+        "@components/*": ["./*/src/components/*"]
+      },
+      "jsx": "react",
+      "module": "CommonJS",
+      "composite": true,
+      "target": "ES2018",
+      "strict": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "noImplicitReturns": true,
+      "declaration": true,
+      "skipLibCheck": true,
+      "allowJs": false,
+      "checkJs": false,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+    },
+    "exclude": ["node_modules", "docs", "stories", "__tests__"]
+}

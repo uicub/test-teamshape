@@ -1,0 +1,51 @@
+.container {
+    box-shadow: 0px 8px 40px #16195e1f;
+    border: 1px solid #d5d8ee;
+    border-radius: 8px;
+    margin: 32px;
+    background: white;
+}
+.container .header {
+    height: 75px;
+    box-shadow: 0px 15px 40px #16195e1f;
+}
+.container .header .addnewBtn {
+    float: right;
+    padding: 24px 32px;
+}
+.container .header .title {
+    font-size: 24px;
+    padding: 24px 32px;
+    float: left;
+}
+.container .table {
+    padding: 32px;
+}
+.container .table :global .ant-table {
+    background: transparent;
+    text-transform: capitalize;
+}
+.container .table :global .ant-table-thead > tr > th {
+    background: transparent;
+}
+.container .table :global .ant-table-tbody > tr > td {
+    border-color: #d5d8ee;
+    cursor: pointer;
+}
+.container .table :global .ant-table-thead > tr > th {
+    border-color: #d5d8ee;
+}
+.container .status {
+    width: fit-content;
+    border-radius: 26px;
+    padding: 6px 16px;
+}
+.container .statusRunning {
+    background: #f9f3dd;
+}
+.container .statusScheduled {
+    background: #ddf5f9;
+}
+.container .statusFinished {
+    background: #ddf9dd;
+}

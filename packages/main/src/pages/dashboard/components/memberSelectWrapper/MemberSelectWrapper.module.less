@@ -1,0 +1,159 @@
+@import "../../../../styles/variables.less";
+.container {
+    display: flex;
+    box-shadow: 0px 8px 40px @components-shadow;
+    border: 1px solid @components-border;
+    justify-content: space-between;
+    border-radius: 8px;
+    background: white;
+    margin-top: 34px;
+    .header {
+        height: 75px;
+        padding: 24px 32px;
+        color: #0d0736;
+        font-size: 24px;
+        background: white;
+        border-radius: 0px 8px 0px 0px;
+    }
+    .memberHeader {
+        box-shadow: 0px 15px 40px #16195e1f;
+        border-radius: 8px 0px 0px 0px;
+        display: flex;
+        justify-content: space-between;
+        .button {
+            color: @inverse-button-color;
+            border: 2px solid @inverse-button-color;
+        }
+    }
+    .membersContainer {
+        background: white;
+        flex: 1;
+        border-radius: 8px 0px 0px 8px;
+        .content {
+            padding: 24px 32px;
+            overflow-y: scroll;
+            display: flex;
+            .col {
+                flex: 1;
+            }
+            .col1 {
+                padding-right: 32px;
+            }
+            .memberCard {
+                height: 125px;
+                background: white;
+                box-shadow: 0px 8px 40px #16195e1f;
+                border: 1px solid #d5d8ee;
+                border-radius: 8px;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 24px;
+                .checkboxContainer {
+                    position: absolute;
+                    top: 11px;
+                    right: 11px;
+                    .checked0 {
+                        :global {
+                            .ant-checkbox-checked .ant-checkbox-inner {
+                                background-color: @color0;
+                                border-color: @color0;
+                            }
+                        }
+                    }
+                    .checked1 {
+                        :global {
+                            .ant-checkbox-checked .ant-checkbox-inner {
+                                background-color: @color1;
+                                border-color: @color1;
+                            }
+                        }
+                    }
+                    .checked2 {
+                        :global {
+                            .ant-checkbox-checked .ant-checkbox-inner {
+                                background-color: @color2;
+                                border-color: @color2;
+                            }
+                        }
+                    }
+                    .checked3 {
+                        :global {
+                            .ant-checkbox-checked .ant-checkbox-inner {
+                                background-color: @color3;
+                                border-color: @color3;
+                            }
+                        }
+                    }
+                    .checked4 {
+                        :global {
+                            .ant-checkbox-checked .ant-checkbox-inner {
+                                background-color: @color4;
+                                border-color: @color4;
+                            }
+                        }
+                    }
+                    .checked5 {
+                        :global {
+                            .ant-checkbox-checked .ant-checkbox-inner {
+                                background-color: @color5;
+                                border-color: @color5;
+                            }
+                        }
+                    }
+                    .checked6 {
+                        :global {
+                            .ant-checkbox-checked .ant-checkbox-inner {
+                                background-color: @color6;
+                                border-color: @color6;
+                            }
+                        }
+                    }
+                }
+                .detailsContainer {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    .name {
+                        font-size: 16px;
+                        color: #0d0736;
+                        font-weight: 500;
+                    }
+                }
+            }
+            .checkedBorder0 {
+                border: 1px solid @color0;
+            }
+            .checkedBorder1 {
+                border: 1px solid @color1;
+            }
+            .checkedBorder2 {
+                border: 1px solid @color2;
+            }
+            .checkedBorder3 {
+                border: 1px solid @color3;
+            }
+            .checkedBorder4 {
+                border: 1px solid @color4;
+            }
+            .checkedBorder5 {
+                border: 1px solid @color5;
+            }
+            .checkedBorder6 {
+                border: 1px solid @color6;
+            }
+        }
+    }
+    .element {
+        width: 57%;
+        background: white;
+        border-radius: 0px 8px 8px 0px;
+        border-left: 1px solid #eaebf5;
+        .content {
+            padding-bottom: 32px;
+            color: #0d0736;
+        }
+    }
+}

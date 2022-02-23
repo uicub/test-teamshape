@@ -1,0 +1,117 @@
+.container {
+  min-height: 100vh;
+  background: #F8F9FC;
+  display: flex;
+}
+.container .questionsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 52%;
+}
+.container .questionsContainer .question {
+  padding-bottom: 65px;
+  font-size: 38px;
+  color: #0D0736;
+  font-weight: 500;
+  text-align: center;
+}
+.container .questionsContainer .disclaimer {
+  text-align: center;
+  padding-top: 40px;
+  padding-bottom: 95px;
+}
+.container .navigateArrow {
+  width: 24%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 120px;
+}
+.container .navigateArrow .navigationContainer {
+  cursor: pointer;
+}
+.container .navigateArrow .navigationContainer .icon {
+  padding: 0px 12px;
+}
+.containerMobile {
+  min-height: 100vh;
+  background: #FFF;
+  padding: 32px 36px;
+}
+.containerMobile .questionsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 52%;
+}
+.containerMobile .question {
+  padding-bottom: 86px;
+  font-size: 38px;
+  color: #0D0736;
+  font-weight: 500;
+  text-align: center;
+}
+.containerMobile .questionMobile {
+  font-size: 24px;
+  padding-top: 0px;
+  padding-bottom: 24px;
+}
+.containerMobile .disclaimer {
+  text-align: center;
+  font-size: 16px;
+  padding: 32px 0px 40px 0px;
+}
+.containerMobile .disclaimerMobile {
+  padding: 32px 0px 16px 0px;
+  font-size: 14px;
+}
+.containerMobile .stepsContainer {
+  display: flex;
+  justify-content: center;
+  height: 20vh;
+  align-items: flex-end;
+}
+.containerMobile .stepsMobileContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+.containerMobile .stepsMobileContainer .mobileNavigateArrows {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.containerMobile .navigateArrow {
+  font-size: 16px;
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 50px;
+}
+.containerMobile .navigateArrow .navigationContainer {
+  cursor: pointer;
+}
+.containerMobile .navigateArrow .navigationContainer .icon {
+  padding: 0px 12px;
+}
+.containerMobile .navigateArrowMobile {
+  padding-bottom: 16px;
+}
+.containerTablet {
+  padding: 80px;
+}
+.errorContainer {
+  min-height: 100vh;
+  background: #F8F9FC;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.errorContainer .title {
+  color: #6A6A85;
+}

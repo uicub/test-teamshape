@@ -1,0 +1,30 @@
+.avatarContainer {
+  box-shadow: 0px 4px 8px #16195E4D;
+  border: 3px solid #FFFFFF;
+  color: #FFFFFF;
+  border-radius: 60%;
+}
+.avatar0 {
+  background-color: #F1466E;
+}
+.avatar1 {
+  background-color: #2057FF;
+}
+.avatar2 {
+  background-color: #FF872B;
+}
+.avatar3 {
+  background-color: #35B201;
+}
+.avatar4 {
+  background-color: #E7D342;
+}
+.avatar5 {
+  background-color: #970FD1;
+}
+.avatar6 {
+  background-color: #0E054D;
+}
+.anonymous {
+  background-color: #F2F4F9;
+}

@@ -1,0 +1,6 @@
+.container {
+  padding: 0px 30px;
+}
+.container .textInput {
+  height: 260px !important;
+}

@@ -1,0 +1,49 @@
+@import "@styles/variables.less";
+.container {
+    min-height: 100vh;
+    background: @page-background;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .logoContainer {
+        width: 30%;
+        max-width: 480px;
+        display: flex;
+        justify-content: center;
+        padding-bottom: 25px;
+        .logo {
+          width: 65%;
+        }
+    }
+    .inputContainer {
+        background: @components-background;
+        width: 30%;
+        max-width: 480px;
+        padding: 30px 30px 6px 30px;
+        display: flex;
+        flex-direction: column;
+        border-radius: 8px;
+        box-shadow: 0px 8px 40px @components-shadow;
+        border: 1px solid @components-border;
+        .formTitle {
+            align-self: center;
+            color: @text-color-dark;
+            font-size: 14px;
+            font-weight: 500;
+            padding-bottom: 20px;
+        }
+        .forgotPassword {
+           color: @forgot-password-color;
+           font-size: 12px;
+           padding-left: 10px;
+        }
+        
+    }
+    .error {
+        color: @error-color;
+        display: flex;
+        justify-content: center;
+     }
+
+}

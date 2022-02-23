@@ -1,0 +1,14 @@
+.item {
+  display: flex;
+  color: #0D0736;
+}
+.item .icon_success {
+  color: #35B201;
+  padding-right: 8px;
+  font-size: 17px;
+}
+.item .icon_error {
+  color: #FF4040;
+  padding-right: 8px;
+  font-size: 17px;
+}
