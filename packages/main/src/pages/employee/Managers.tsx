@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import React, { useContext, useState } from "react";
 import { observer } from "mobx-react-lite";
+import { toJS } from "mobx";
 import {
     Card,
     CardBody,
@@ -13,21 +14,60 @@ import {
     ModalBody,
     ModalFooter,
     Button,
+    Container,
+    Row,
+    Col,
+    Input,
+    Select,
 } from "@doar/components";
 import Layout from "../../layouts";
 import Content from "../../layouts/content";
 import TeamStore from "../../stores/teamStore";
 import { StyledTheadTR, StyledTD, StyledIcon, StyledHeader } from "./style";
-import { User } from "../../types/Team";
+import { User, Team } from "../../types/Team";
+type TInput = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 
 const Managers: React.FC = () => {
     const teamStore = useContext(TeamStore);
-    const { myteams } = teamStore;
+    const { myteams, teamName } = teamStore;
+
+    const [team, setTeam] = useState("");
+    const [managerName, setManagerName] = useState("");
+    const [mail, setMail] = useState("");
+
+    console.log("myTeam", toJS(teamName));
+    const teams: Team[] = [];
+    myteams.map((team) => teams.push(team));
+
     const managers: User[] = [];
     myteams.map((team) => managers.push(team.manager));
+
     const [show, setShow] = useState(false);
     const clickHandler = () => {
         setShow((prev) => !prev);
+    };
+    const teamHandler = (e: React.ChangeEvent<TInput>) => {
+        setTeam(e.target.value);
+    };
+    const managerHandler = (e: React.ChangeEvent<TInput>) => {
+        setManagerName(e.target.value);
+    };
+    const mailHandler = (e: React.ChangeEvent<TInput>) => {
+        setMail(e.target.value);
+    };
+    const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const data = {
+            teamName,
+            managerName,
+            mail,
+        };
+        console.log(data);
+    };
+    const inviteManagers = () => {
+        console.log("hello");
+
+        clickHandler();
     };
 
     return (
@@ -41,25 +81,72 @@ const Managers: React.FC = () => {
                                 <Modal
                                     show={show}
                                     onClose={clickHandler}
-                                    size="sm"
+                                    size="md"
                                 >
                                     <ModalHeader>
-                                        <ModalTitle>Modal Title</ModalTitle>
-                                        <ModalClose>x</ModalClose>
+                                        <ModalTitle>
+                                            Manager Invitation
+                                        </ModalTitle>
+                                        <ModalClose onClose={clickHandler}>
+                                            x
+                                        </ModalClose>
                                     </ModalHeader>
                                     <ModalBody>
-                                        <p>
-                                            It is a long established fact that a
-                                            reader will be distracted by the
-                                            readable content of a page when
-                                            looking at its layout. The point of
-                                            using Lorem Ipsum is that it has a
-                                            more-or-less normal distribution of
-                                            letters, as opposed to using
-                                            &apos;Content here, content
-                                            here&apos;, making it look like
-                                            readable English.
-                                        </p>
+                                        <Container>
+                                            <form onSubmit={submitForm}>
+                                                <Row>
+                                                    <Col col>
+                                                        <Select
+                                                            id=""
+                                                            name="teamName"
+                                                            mb="10px"
+                                                            onChange={
+                                                                teamHandler
+                                                            }
+                                                        >
+                                                            <option
+                                                                value="DEFAULT"
+                                                                disabled
+                                                            >
+                                                                Select Team
+                                                            </option>
+                                                            {teams.map(
+                                                                (team) => (
+                                                                    <option
+                                                                        value={
+                                                                            team.uid
+                                                                        }
+                                                                        key={
+                                                                            team.uid
+                                                                        }
+                                                                    >
+                                                                        {
+                                                                            team.name
+                                                                        }
+                                                                    </option>
+                                                                )
+                                                            )}
+                                                        </Select>
+                                                        <Input
+                                                            name="managerName"
+                                                            id="managerName"
+                                                            placeholder="Enter name"
+                                                            mb="10px"
+                                                            type="text"
+                                                            onChange={(e) =>
+                                                                managerHandler(e)
+                                                            }
+                                                        />
+                                                        <Input
+                                                            name="managerMail"
+                                                            id="managerMail"
+                                                            placeholder="Enter email address"
+                                                            type="email"
+                                                        />
+                                                    </Col>
+                                                </Row>
+                                            </form>
+                                        </Container>
                                     </ModalBody>
                                     <ModalFooter>
                                         <Button
@@ -69,12 +156,12 @@ const Managers: React.FC = () => {
                                             Close
                                         </Button>
                                         <Button color="primary">
-                                            Save changes
+                                            Send Invite
                                         </Button>
                                     </ModalFooter>
                                 </Modal>
                                 <Button onClick={clickHandler}>
-                                    Open Modal
+                                    Invite Manager
                                 </Button>
                             </>
                         </StyledHeader>
