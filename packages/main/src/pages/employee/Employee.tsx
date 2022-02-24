@@ -27,7 +27,6 @@ import Content from "../../layouts/content";
 import TeamStore from "../../stores/teamStore";
 import { User } from "../../types/Team";
 import api from "../../utils/ApiService";
-
 import {
     StyledTheadTR,
     StyledTD,
@@ -37,6 +36,7 @@ import {
 } from "./style";
 
 import { StyledButton } from "../baseStyle";
+import UpdateForm from "./Form/UpdateForm";
 
 type TInput = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 
@@ -61,6 +61,18 @@ function Employee() {
     const [show, setShow] = useState(false);
     const clickHandler = () => {
         setShow((prev) => !prev);
+    };
+    const [showEditForm, setEditrForm] = useState(false);
+    type Props = {
+        id: string;
+    };
+    const editHandler = () => {
+        setEditrForm((prev) => !prev);
+    };
+    const editDataHandler = ({ id }: Props) => {
+        console.log("id", id);
+
+        setEditrForm((prev) => !prev);
     };
     const [groupName, setGroupName] = useState("");
     const [employeeName, setEmployeeName] = useState("");
@@ -221,6 +233,41 @@ function Employee() {
                                     </StyledTheadTR>
                                 </thead>
                                 <tbody>
+                                    <>
+                                        <Modal
+                                            onClose={editHandler}
+                                            size="md"
+                                            show={showEditForm}
+                                        >
+                                            <ModalHeader>
+                                                <ModalTitle>
+                                                    Edit Info
+                                                </ModalTitle>
+                                                <ModalClose
+                                                    onClose={editHandler}
+                                                >
+                                                    x
+                                                </ModalClose>
+                                            </ModalHeader>
+                                            <ModalBody>
+                                                <p>test</p>
+                                            </ModalBody>
+                                            <ModalFooter>
+                                                <Button
+                                                    color="secondary"
+                                                    onClick={editHandler}
+                                                >
+                                                    Close
+                                                </Button>
+                                                <Button color="primary">
+                                                    Save changes
+                                                </Button>
+                                            </ModalFooter>
+                                        </Modal>
+                                        {/* <Button onClick={editHandler}>
+                                            Open Modal
+                                        </Button> */}
+                                    </>
                                     {teamMember?.map((member) => (
                                         <tr key={member.uid}>
                                             <StyledTD>
@@ -245,8 +292,12 @@ function Employee() {
                                                         <i className="fa fa-eye" />
                                                     </StyledIcon>
                                                 )}
-
-                                                <StyledIcon href="/" ml="10px">
+                                                <StyledIcon
+                                                    // onClick={() =>
+                                                    //     editDataHandler(6)
+                                                    // }
+                                                    ml="10px"
+                                                >
                                                     <i className="fa fa-pencil-alt" />
                                                 </StyledIcon>
 
