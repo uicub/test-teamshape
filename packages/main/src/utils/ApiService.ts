@@ -5,6 +5,7 @@
 import axios, { AxiosInstance } from "axios";
 import session from "../stores/sessionStore";
 import { INewSurvey } from "../types/Surveys";
+import { Manager, Employee } from "../types/Team";
 
 class ApiService {
     private instance: AxiosInstance;
@@ -195,6 +196,16 @@ class ApiService {
 
     public postNewSuervey = async (data: INewSurvey) => {
         const resp = await this.privatePostCall("/survey/new-survey/", data);
+        return resp;
+    };
+
+    public postNewManager = async (data: Manager) => {
+        const resp = await this.privatePostCall("/managers/new-manager/", data);
+        return resp;
+    };
+
+    public postNewEmployee = async (data: Employee) => {
+        const resp = await this.privatePostCall("/employee/new-employee/", data);
         return resp;
     };
 

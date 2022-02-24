@@ -32,6 +32,17 @@ export interface User {
     team: string;
 }
 
+export interface Manager {
+    managerMail: string;
+    groupName: string;
+    managerName: string;
+}
+export interface Employee {
+    employeeMail: string;
+    groupName: string;
+    employeeName: string;
+}
+
 export interface Results {
     bigfive: BigFive;
     jungian: Jungian;

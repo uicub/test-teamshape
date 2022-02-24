@@ -1,7 +1,9 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-floating-promises */
+//* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import React, { useContext, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { toJS } from "mobx";
+import Swal from "sweetalert2";
 import {
     Card,
     CardBody,
@@ -25,16 +27,23 @@ import Content from "../../layouts/content";
 import TeamStore from "../../stores/teamStore";
 import { StyledTheadTR, StyledTD, StyledIcon, StyledHeader } from "./style";
 import { User, Team } from "../../types/Team";
+import api from "../../utils/ApiService";
 
 type TInput = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 
 const Managers: React.FC = () => {
     const teamStore = useContext(TeamStore);
-    const { myteams, teamName } = teamStore;
+    const { myteams } = teamStore;
 
-    console.log("myTeam", toJS(teamName));
+    // console.log("myTeam", toJS(teamName));
     const teams: Team[] = [];
     myteams.map((team) => teams.push(team));
+
+    // const tempTeam = [
+    //     { name: "windows Developer", uid: 1 },
+    //     { name: "apple Developer", uid: 2 },
+    //     { name: "linux Developer", uid: 3 },
+    // ];
 
     const managers: User[] = [];
     myteams.map((team) => managers.push(team.manager));
@@ -45,28 +54,36 @@ const Managers: React.FC = () => {
     };
     const [groupName, setGroupName] = useState("");
     const [managerName, setManagerName] = useState("");
-    const [mail, setMail] = useState("");
-    const teamHandler = (e: React.ChangeEvent<TInput>) => {
+    const [managerMail, setManagerMail] = useState("");
+    const groupHandler = (e: React.ChangeEvent<TInput>) => {
         setGroupName(e.target.value);
     };
     const managerHandler = (e: React.ChangeEvent<TInput>) => {
         setManagerName(e.target.value);
     };
     const mailHandler = (e: React.ChangeEvent<TInput>) => {
-        setMail(e.target.value);
+        setManagerMail(e.target.value);
     };
     const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+
         const data = {
             groupName,
             managerName,
-            mail,
+            managerMail,
         };
-        console.log(data);
-    };
-    const inviteManagers = () => {
-        console.log("hello");
 
+        api.postNewManager(data).then((res) => {
+            console.log("resp: ", res);
+            res.success = true;
+            if (res?.success) {
+                Swal.fire("Done!", "Invitation Sent", "success");
+                // redirect to session url
+                // window.location.assign("/managers");
+            } else {
+                Swal.fire("AH !!", "Something went wrong ", "error");
+            }
+        });
         clickHandler();
     };
 
@@ -83,17 +100,17 @@ const Managers: React.FC = () => {
                                     onClose={clickHandler}
                                     size="md"
                                 >
-                                    <ModalHeader>
-                                        <ModalTitle>
-                                            Manager Invitation
-                                        </ModalTitle>
-                                        <ModalClose onClose={clickHandler}>
-                                            x
-                                        </ModalClose>
-                                    </ModalHeader>
-                                    <ModalBody>
-                                        <Container>
-                                            <form onSubmit={submitForm}>
+                                    <form onSubmit={submitForm}>
+                                        <ModalHeader>
+                                            <ModalTitle>
+                                                Manager Invitation
+                                            </ModalTitle>
+                                            <ModalClose onClose={clickHandler}>
+                                                x
+                                            </ModalClose>
+                                        </ModalHeader>
+                                        <ModalBody>
+                                            <Container>
                                                 <Row>
                                                     <Col col>
                                                         <Select
@@ -101,20 +118,17 @@ const Managers: React.FC = () => {
                                                             name="groupName"
                                                             mb="10px"
                                                             onChange={
-                                                                teamHandler
+                                                                groupHandler
                                                             }
                                                         >
-                                                            <option
-                                                                value="DEFAULT"
-                                                                disabled
-                                                            >
-                                                                Select Team
+                                                            <option value="0">
+                                                                Select a team
                                                             </option>
                                                             {teams.map(
                                                                 (team) => (
                                                                     <option
                                                                         value={
-                                                                            team.uid
+                                                                            team.name
                                                                         }
                                                                         key={
                                                                             team.uid
@@ -144,24 +158,32 @@ const Managers: React.FC = () => {
                                                             id="managerMail"
                                                             placeholder="Enter email address"
                                                             type="email"
+                                                            onChange={(e) =>
+                                                                mailHandler(e)
+                                                            }
                                                         />
                                                     </Col>
                                                 </Row>
-                                            </form>
-                                        </Container>
-                                    </ModalBody>
-                                    <ModalFooter>
-                                        <Button
-                                            color="secondary"
-                                            onClick={clickHandler}
-                                        >
-                                            Close
-                                        </Button>
-                                        <Button color="primary">
-                                            Send Invite
-                                        </Button>
-                                    </ModalFooter>
+                                            </Container>
+                                        </ModalBody>
+
+                                        <ModalFooter>
+                                            <Button
+                                                color="secondary"
+                                                onClick={clickHandler}
+                                            >
+                                                Close
+                                            </Button>
+                                            <Button
+                                                type="submit"
+                                                color="primary"
+                                            >
+                                                Send Invite
+                                            </Button>
+                                        </ModalFooter>
+                                    </form>
                                 </Modal>
+
                                 <Button onClick={clickHandler}>
                                     Invite Manager
                                 </Button>
