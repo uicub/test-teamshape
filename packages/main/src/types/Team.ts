@@ -38,9 +38,11 @@ export interface Manager {
     managerName: string;
 }
 export interface Employee {
-    employeeMail: string;
-    groupName: string;
-    employeeName: string;
+    email: string;
+    first_name: string;
+    uid: string;
+    team: string;
+    test_completed: boolean;
 }
 
 export interface Results {
