@@ -44,20 +44,47 @@ const Managers: React.FC = () => {
     //     { name: "apple Developer", uid: 2 },
     //     { name: "linux Developer", uid: 3 },
     // ];
+    const managers = [
+        {
+            uid: "6218b160673ff5e571b863d8",
+            first_name: "Hallie Trevino",
+            email: "hallietrevino@everest.com",
+            team: "Azure Developer",
+            test_completed: true,
+        },
+        {
+            uid: "6218b1604b8e7e3cd7d033c9",
+            first_name: "Luna Murray",
+            email: "lunamurray@everest.com",
+            team: "Azure Developer",
+            test_completed: true,
+        },
+    ];
+    // const managers: User[] = [];
+    // myteams.map((team) => managers.push(team.manager));
+    const [managerList, setManagerList] = useState(managers);
 
-    const managers: User[] = [];
-    myteams.map((team) => managers.push(team.manager));
+    console.log("MAN", managers);
 
+    // Modal show and close
     const [show, setShow] = useState(false);
     const clickHandler = () => {
         setShow((prev) => !prev);
     };
+    // edit form state
+    const [showEditForm, setEditForm] = useState(false);
+
+    const editHandler = () => {
+        setEditForm((prev) => !prev);
+    };
     const [groupName, setGroupName] = useState("");
     const [managerName, setManagerName] = useState("");
     const [managerMail, setManagerMail] = useState("");
+    const [managerId, setManagerId] = useState("");
     const groupHandler = (e: React.ChangeEvent<TInput>) => {
         setGroupName(e.target.value);
     };
+
     const managerHandler = (e: React.ChangeEvent<TInput>) => {
         setManagerName(e.target.value);
     };
@@ -86,7 +113,38 @@ const Managers: React.FC = () => {
         });
         clickHandler();
     };
+    // pass id for editing info
+    const managerEditHandler = (id: any) => {
+        setManagerId(id);
+        setEditForm((prev) => !prev);
+    };
 
+    // update manager info
+    const updateManagerHandler = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        console.log("all members", managers);
+        const existingMemberIndex = managers.findIndex(
+            (eachEmployee) => eachEmployee.uid === managerId
+        );
+        const existingMember = managers[existingMemberIndex];
+        // const {  first_name:employeeName } = employee;
+        const updatedMember = {
+            ...existingMember,
+            first_name: managerName || "",
+            email: managerMail || "",
+            team: groupName || "",
+            test_completed: "" || true,
+        };
+
+        const updateMemberList = [...managers];
+        updateMemberList[existingMemberIndex] = updatedMember;
+        setManagerList(updateMemberList);
+        setEditForm((prev) => !prev);
+    };
+    const deleteEmployeeHandler = (id: any) => {
+        const allMembers = managers.filter((member) => member.uid !== id);
+        setManagerList(allMembers);
+    };
     return (
         <>
             <Layout>
@@ -200,7 +258,113 @@ const Managers: React.FC = () => {
                                     </StyledTheadTR>
                                 </thead>
                                 <tbody>
-                                    {managers?.map((member) => (
+                                    <>
+                                        <Modal
+                                            onClose={editHandler}
+                                            size="md"
+                                            show={showEditForm}
+                                        >
+                                            <form
+                                                onSubmit={updateManagerHandler}
+                                            >
+                                                <ModalHeader>
+                                                    <ModalTitle>
+                                                        Edit Info
+                                                    </ModalTitle>
+                                                    <ModalClose
+                                                        onClose={editHandler}
+                                                    >
+                                                        x
+                                                    </ModalClose>
+                                                </ModalHeader>
+                                                <ModalBody>
+                                                    <Container>
+                                                        <Row>
+                                                            <Col col>
+                                                                <Select
+                                                                    id=""
+                                                                    name="groupName"
+                                                                    mb="10px"
+                                                                    onChange={
+                                                                        groupHandler
+                                                                    }
+                                                                >
+                                                                    <option value="0">
+                                                                        Select a
+                                                                        team
+                                                                    </option>
+                                                                    {myteams.map(
+                                                                        (
+                                                                            everyTeam
+                                                                        ) => (
+                                                                            <option
+                                                                                value={
+                                                                                    everyTeam.name
+                                                                                }
+                                                                                key={
+                                                                                    everyTeam.uid
+                                                                                }
+                                                                            >
+                                                                                {
+                                                                                    everyTeam.name
+                                                                                }
+                                                                            </option>
+                                                                        )
+                                                                    )}
+                                                                </Select>
+                                                                <Input
+                                                                    name="managerName"
+                                                                    id="managerName"
+                                                                    placeholder="Enter name"
+                                                                    mb="10px"
+                                                                    type="text"
+                                                                    onChange={(
+                                                                        e
+                                                                    ) =>
+                                                                        managerHandler(
+                                                                            e
+                                                                        )
+                                                                    }
+                                                                />
+
+                                                                <Input
+                                                                    name="managerMail"
+                                                                    id="managerMail"
+                                                                    placeholder="Enter email address"
+                                                                    type="email"
+                                                                    onChange={(
+                                                                        e
+                                                                    ) =>
+                                                                        mailHandler(
+                                                                            e
+                                                                        )
+                                                                    }
+                                                                />
+                                                            </Col>
+                                                        </Row>
+                                                    </Container>
+                                                </ModalBody>
+                                                <ModalFooter>
+                                                    <Button
+                                                        color="secondary"
+                                                        onClick={editHandler}
+                                                    >
+                                                        Close
+                                                    </Button>
+                                                    <Button
+                                                        type="submit"
+                                                        color="primary"
+                                                    >
+                                                        Save changes
+                                                    </Button>
+                                                </ModalFooter>
+                                            </form>
+                                        </Modal>
+                                        {/* <Button onClick={editHandler}>
+                                            Open Modal
+                                        </Button> */}
+                                    </>
+                                    {managerList?.map((member) => (
                                         <tr key={member.uid}>
                                             <StyledTD>
                                                 {member.first_name}
@@ -208,7 +372,13 @@ const Managers: React.FC = () => {
                                             <StyledTD>{member.email}</StyledTD>
                                             <StyledTD>{member.team}</StyledTD>
                                             <StyledTD>
-                                                <StyledIcon href="/">
+                                                <StyledIcon
+                                                    onClick={() =>
+                                                        managerEditHandler(
+                                                            member.uid
+                                                        )
+                                                    }
+                                                >
                                                     <i className="fa fa-pencil-alt" />
                                                 </StyledIcon>
 
