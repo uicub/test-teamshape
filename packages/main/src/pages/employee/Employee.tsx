@@ -44,6 +44,8 @@ function Employee() {
 
     const { team, myteams: allTeam } = teamStore;
     // const teamMember = team?.members;
+
+    // demo data
     const teamMember = [
         {
             uid: "6218b160673ff5e571b863d8",
@@ -95,69 +97,60 @@ function Employee() {
             test_completed: true,
         },
     ];
-    const [employees, setEmployees] = useState(teamMember);
-    interface IEmployee {
-        uid: string | undefined;
-        first_name: string | undefined;
-        email: string | undefined;
-        team: string | undefined;
-        test_completed: boolean | undefined;
-    }
-    const [employee, setEmployee] = useState<IEmployee>({
-        uid: "",
-        first_name: " ",
-        email: "",
-        team: "",
-        test_completed: true,
-    });
-
     const notTestedAlert = () => {
         Swal.fire("", "Test not completed", "error");
     };
 
+    const [employees, setEmployees] = useState(teamMember);
+
     const [show, setShow] = useState(false);
+
     const clickHandler = () => {
         setShow((prev) => !prev);
     };
 
+    // edit form state
     const [showEditForm, setEditForm] = useState(false);
 
     const editHandler = () => {
         setEditForm((prev) => !prev);
     };
-
+    // state
     const [teamName, setTeamName] = useState("");
     const [employeeName, setEmployeeName] = useState("");
     const [employeeMail, setEmployeeMail] = useState("");
     const [employeeId, setEmployeeId] = useState("");
+
+    // set Team name
     const teamHandler = (e: React.ChangeEvent<TInput>) => {
         setTeamName(e.target.value);
     };
+
+    // set employee name
     const employeeNameHandler = (e: React.ChangeEvent<TInput>) => {
         setEmployeeName(e.target.value);
     };
+    // set mail
     const mailHandler = (e: React.ChangeEvent<TInput>) => {
         setEmployeeMail(e.target.value);
     };
+
+    // create employee form
     const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         const data = {
-            uid: Math.random().toString(16).slice(2),
+            uid: Date.now().toString(36) + Math.random().toString(36).substr(2),
             team: teamName,
             first_name: employeeName,
             email: employeeMail,
             test_completed: true,
         };
 
-        const allMembers = [...teamMember, { ...data }];
-        console.log("all", data.uid);
+        const allMembers = [...employees, data];
 
         setEmployees(allMembers);
 
-        // setTeamMember(allMembers);
-
-        console.log("employee", data);
         api.postNewEmployee(data).then((res) => {
             console.log("resp: ", data);
             // teamMember?.push
@@ -179,26 +172,15 @@ function Employee() {
         clickHandler();
     };
 
+    // pass id for editing info
     const employeeEditHandler = (id: any) => {
-        const targetEmployee = employees.find((member) => member.uid === id);
-
-        console.log("employee", id);
-        const singleEmployee = {
-            uid: targetEmployee?.uid,
-            first_name: targetEmployee?.first_name,
-            email: targetEmployee?.email,
-            team: targetEmployee?.team,
-            test_completed: targetEmployee?.test_completed,
-        };
-
-        // setEmployee(singleEmployee);
-        // setEmployees();
         setEmployeeId(id);
         setEditForm((prev) => !prev);
     };
+
+    // update employee info
     const updateEmployeeHandler = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log("id", employee.first_name);
         console.log("all members", employees);
         const existingMemberIndex = employees.findIndex(
             (eachEmployee) => eachEmployee.uid === employeeId
@@ -207,16 +189,16 @@ function Employee() {
         // const {  first_name:employeeName } = employee;
         const updatedMember = {
             ...existingMember,
-            first_name: employee?.first_name || "",
-            email: employee?.email || "",
-            team: employee?.team || "",
-            test_completed: employee?.test_completed || true,
+            first_name: employeeName || "",
+            email: employeeMail || "",
+            team: teamName || "",
+            test_completed: "" || true,
         };
 
         const updateMemberList = [...employees];
         updateMemberList[existingMemberIndex] = updatedMember;
-
-        console.log("list", updateMemberList);
+        setEmployees(updateMemberList);
+        setEditForm((prev) => !prev);
     };
     const deleteEmployeeHandler = (id: any) => {
         const allMembers = employees.filter((member) => member.uid !== id);
@@ -366,7 +348,7 @@ function Employee() {
                                                             <Col col>
                                                                 <Select
                                                                     id=""
-                                                                    name="teamName"
+                                                                    name="team"
                                                                     mb="10px"
                                                                     onChange={
                                                                         teamHandler
@@ -396,8 +378,8 @@ function Employee() {
                                                                     )}
                                                                 </Select>
                                                                 <Input
-                                                                    name="employeeName"
-                                                                    id="employeeName"
+                                                                    name="first_name"
+                                                                    id="first_name"
                                                                     placeholder="Enter name"
                                                                     mb="10px"
                                                                     type="text"
@@ -411,7 +393,7 @@ function Employee() {
                                                                 />
 
                                                                 <Input
-                                                                    name="employeeMail"
+                                                                    name="email"
                                                                     id="employeeMail"
                                                                     placeholder="Enter email address"
                                                                     type="email"
