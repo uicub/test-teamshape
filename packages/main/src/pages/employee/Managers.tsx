@@ -33,35 +33,13 @@ type TInput = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 
 const Managers: React.FC = () => {
     const teamStore = useContext(TeamStore);
-    const { myteams } = teamStore;
-
-    // console.log("myTeam", toJS(teamName));
+    const { myteams: allTeam } = teamStore;
+    const myteams = JSON.parse(JSON.stringify(allTeam));
     const teams: Team[] = [];
-    myteams.map((team) => teams.push(team));
+    myteams.map((team: any) => teams.push(team));
 
-    // const tempTeam = [
-    //     { name: "windows Developer", uid: 1 },
-    //     { name: "apple Developer", uid: 2 },
-    //     { name: "linux Developer", uid: 3 },
-    // ];
-    const managers = [
-        {
-            uid: "6218b160673ff5e571b863d8",
-            first_name: "Hallie Trevino",
-            email: "hallietrevino@everest.com",
-            team: "Azure Developer",
-            test_completed: true,
-        },
-        {
-            uid: "6218b1604b8e7e3cd7d033c9",
-            first_name: "Luna Murray",
-            email: "lunamurray@everest.com",
-            team: "Azure Developer",
-            test_completed: true,
-        },
-    ];
-    // const managers: User[] = [];
-    // myteams.map((team) => managers.push(team.manager));
+    const managers: User[] = [];
+    myteams.map((team: any) => managers.push(team.manager));
     const [managerList, setManagerList] = useState(managers);
 
     console.log("MAN", managers);
@@ -141,9 +119,9 @@ const Managers: React.FC = () => {
         setManagerList(updateMemberList);
         setEditForm((prev) => !prev);
     };
-    const deleteEmployeeHandler = (id: any) => {
-        const allMembers = managers.filter((member) => member.uid !== id);
-        setManagerList(allMembers);
+    const deleteManagerHandler = (id: any) => {
+        const allManagers = managerList.filter((member) => member.uid !== id);
+        setManagerList(allManagers);
     };
     return (
         <>
@@ -295,7 +273,7 @@ const Managers: React.FC = () => {
                                                                     </option>
                                                                     {myteams.map(
                                                                         (
-                                                                            everyTeam
+                                                                            everyTeam: any
                                                                         ) => (
                                                                             <option
                                                                                 value={
@@ -382,7 +360,14 @@ const Managers: React.FC = () => {
                                                     <i className="fa fa-pencil-alt" />
                                                 </StyledIcon>
 
-                                                <StyledIcon href="/" ml="10px">
+                                                <StyledIcon
+                                                    onClick={() =>
+                                                        deleteManagerHandler(
+                                                            member.uid
+                                                        )
+                                                    }
+                                                    ml="10px"
+                                                >
                                                     <i className="fa fa-trash-alt" />
                                                 </StyledIcon>
                                             </StyledTD>

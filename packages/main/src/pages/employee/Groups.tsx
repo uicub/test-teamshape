@@ -2,7 +2,6 @@
 import React, { useContext, useState } from "react";
 import { observer } from "mobx-react-lite";
 import Swal from "sweetalert2";
-// import api from "../../utils/ApiService";
 
 import {
     Card,
@@ -22,6 +21,7 @@ import {
     Input,
     Select,
 } from "@doar/components";
+import api from "../../utils/ApiService";
 
 import Layout from "../../layouts";
 import Content from "../../layouts/content";
@@ -32,18 +32,9 @@ type TInput = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 
 const Groups: React.FC = () => {
     const teamStore = useContext(TeamStore);
-    // const { myteams } = teamStore;
+    const { myteams: myAllTeam } = teamStore;
+    const teamList = JSON.parse(JSON.stringify(myAllTeam));
 
-    const teamList = [
-        {
-            uid: "6218b160673ff5e571b863d8",
-            name: "Azure Developer",
-        },
-        {
-            uid: "6218b1604b8e7e3cd7d033c9",
-            name: "Windows Developer",
-        },
-    ];
     // Modal show and close
     const [show, setShow] = useState(false);
     const clickHandler = () => {
@@ -72,11 +63,22 @@ const Groups: React.FC = () => {
         const newTeam = {
             uid: Date.now().toString(36) + Math.random().toString(36).substr(2),
             name: groupName,
+            company: {
+                name: "",
+                uid:""
+            },
+            created_at: "",
+            manager: "",
+            members: "",
+            results_calculated_at: "",
+            test_results: "",
+            wellbeing: "",
         };
+
         const teams = [...myteams, newTeam];
         setMyteams(teams);
 
-        // api.postNewManager(data).then((res) => {
+        // api.postNewTeam(newTeam).then((res) => {
         //     console.log("resp: ", res);
         //     res.success = true;
         //     if (res?.success) {
@@ -86,7 +88,9 @@ const Groups: React.FC = () => {
         //     } else {
         //         Swal.fire("AH !!", "Something went wrong ", "error");
         //     }
-        // });
+        // }
+        
+        // );
         clickHandler();
     };
     // pass id for editing info
@@ -99,7 +103,7 @@ const Groups: React.FC = () => {
     const updateGroupHandler = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const existingTeamIndex = myteams.findIndex(
-            (eachGroup) => eachGroup.uid === groupId
+            (eachGroup: any) => eachGroup.uid === groupId
         );
         const existingGroup = myteams[existingTeamIndex];
         // const {  first_name:employeeName } = employee;
@@ -114,7 +118,7 @@ const Groups: React.FC = () => {
         setEditForm((prev) => !prev);
     };
     const deleteTeamHandler = (id: any) => {
-        const allTeam = myteams.filter((team) => team.uid !== id);
+        const allTeam = myteams.filter((team: any) => team.uid !== id);
         setMyteams(allTeam);
     };
     return (
@@ -248,7 +252,7 @@ const Groups: React.FC = () => {
                                             Open Modal
                                         </Button> */}
                                     </>
-                                    {myteams?.map((team) => (
+                                    {myteams?.map((team: any) => (
                                         <tr key={team.uid}>
                                             <StyledTD>{team.name}</StyledTD>
 

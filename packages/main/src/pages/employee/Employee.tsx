@@ -44,59 +44,9 @@ function Employee() {
 
     const { team, myteams: allTeam } = teamStore;
     // const teamMember = team?.members;
+    const teamMember = JSON.parse(JSON.stringify(team?.members));
+    console.log("Members", teamMember);
 
-    // demo data
-    const teamMember = [
-        {
-            uid: "6218b160673ff5e571b863d8",
-            first_name: "Hallie Trevino",
-            email: "hallietrevino@everest.com",
-            team: "Azure Developer",
-            test_completed: true,
-        },
-        {
-            uid: "6218b1604b8e7e3cd7d033c9",
-            first_name: "Luna Murray",
-            email: "lunamurray@everest.com",
-            team: "Azure Developer",
-            test_completed: true,
-        },
-        {
-            uid: "6218b16022fce5760db8a16f",
-            first_name: "Madeleine Hardin",
-            email: "madeleinehardin@everest.com",
-            team: "Azure Developer",
-            test_completed: true,
-        },
-        {
-            uid: "6218b1608c7e21fc8ab0aa5b",
-            first_name: "Walters Mcneil",
-            email: "waltersmcneil@everest.com",
-            team: "Windows developer",
-            test_completed: true,
-        },
-        {
-            uid: "6218b1605cc530fe16d138bf",
-            first_name: "Fran Fletcher",
-            email: "franfletcher@everest.com",
-            team: "Windows developer",
-            test_completed: true,
-        },
-        {
-            uid: "6218b16001c24fb7856adf14",
-            first_name: "Riggs Hinton",
-            email: "riggshinton@everest.com",
-            team: "Windows developer",
-            test_completed: true,
-        },
-        {
-            uid: "6218b16079e50365902ab571",
-            first_name: "Frank Conner",
-            email: "frankconner@everest.com",
-            team: "Windows developer",
-            test_completed: true,
-        },
-    ];
     const notTestedAlert = () => {
         Swal.fire("", "Test not completed", "error");
     };
@@ -183,7 +133,7 @@ function Employee() {
         event.preventDefault();
         console.log("all members", employees);
         const existingMemberIndex = employees.findIndex(
-            (eachEmployee) => eachEmployee.uid === employeeId
+            (eachEmployee: any) => eachEmployee.uid === employeeId
         );
         const existingMember = employees[existingMemberIndex];
         // const {  first_name:employeeName } = employee;
@@ -201,7 +151,7 @@ function Employee() {
         setEditForm((prev) => !prev);
     };
     const deleteEmployeeHandler = (id: any) => {
-        const allMembers = employees.filter((member) => member.uid !== id);
+        const allMembers = employees.filter((member: any) => member.uid !== id);
         setEmployees(allMembers);
     };
     return (
@@ -429,7 +379,7 @@ function Employee() {
                                             Open Modal
                                         </Button> */}
                                     </>
-                                    {employees?.map((member) => (
+                                    {employees?.map((member: any) => (
                                         <tr key={member.uid}>
                                             <StyledTD>
                                                 {member.first_name}
@@ -442,7 +392,7 @@ function Employee() {
                                             <StyledTD>
                                                 {member.test_completed ? (
                                                     <StyledIcon
-                                                        href={`/user/${member.uid}`}
+                                                    // href={`/user/${member.uid}`}
                                                     >
                                                         <i className="fa fa-eye" />
                                                     </StyledIcon>
